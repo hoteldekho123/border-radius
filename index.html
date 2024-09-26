@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blob Maker</title>
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- bootstrap css  -->
+    <link rel="stylesheet" href="assets/libs/bootstrap.min.css">
+</head>
+<body>
+    <!-- animation css  -->
+    
+    <div id="particles-js"> </div>
+
+    <!-- main section start -->
+    <section class="main-section position-relative overflow-hidden">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <h1 class="position-relative main-heading text-center">CSS Border Radius Generator</h1>
+
+                </div>
+                <div class="col-lg-6 mx-auto">
+                    <div class="wrapper">
+                        <div class="output">
+                            <div id="blob"></div>
+                        </div>
+                        <div class="dimensions">
+                            <div>
+                                <label for="blob-height">
+                                    Height
+                                </label>
+                                <input type="number" value="200" id="blob-height">
+                            </div>
+                            <div>
+                                <label for="blob-width">
+                                    Width
+                                </label>
+                                <input type="number" value="200" id="blob-width">
+                            </div>
+                        </div>
+                        <div class="sliders">
+                            <input type="range" value="30">
+                            <input type="range" value="80">
+                            <input type="range" value="60">
+                            <input type="range" value="40">
+                        </div>
+                        <input type="text" id="css-code" readonly>
+                        <button id="copy">Copy</button>
+                    </div> 
+
+                </div>
+            </div>
+        </div>
+        <div class="glowing">
+    
+            <span style="--i:1;"></span>
+            
+            <span style="--i:2;"></span>
+            
+            <span style="--i:3;"></span>
+            
+        </div>
+        <div class="glowing">
+        
+        <span style="--i:1;"></span>
+        
+        <span style="--i:2;"></span>
+        
+        <span style="--i:3;"></span>
+        
+        </div>
+        <div class="glowing">
+        
+        <span style="--i:1;"></span>
+        
+        <span style="--i:2;"></span>
+        
+        <span style="--i:3;"></span>
+        
+        </div>
+        <div class="glowing">
+        
+        <span style="--i:1;"></span>
+        
+        <span style="--i:2;"></span>
+        
+        <span style="--i:3;"></span>
+        
+        </div>
+    </section>
+    <!-- main section end -->
+
+    <!-- copyright section start -->
+    <section class="copyright-section position-relative ">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <p class="text-center">Made with 💜 by Creative Border Radius Generate</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- copyright section end -->
+
+
+    <!--Script-->
+    <script src="assets/libs/script.js"></script>
+    <script src="assets/libs/particles.min.js"></script>
+    <script>
+
+        particlesJS("particles-js", {
+
+        "particles": {
+        "number": {
+            "value": 250,
+            "density": {
+            "enable": true,
+            "value_area": 1500
+            }
+        },
+        "color": {
+            "value": "#fff"
+        },
+        "shape": {
+            "type": "circle",
+            "stroke": {
+            "width": 0,
+            "color": "#000000"
+            },
+            "polygon": {
+            "nb_sides": 5
+            },
+            "image": {
+            "src": "http://image.ibb.co/g9eFcF/logo_transparent.png",
+            "width": 100,
+            "height": 100
+            }
+        },
+        "opacity": {
+            "value": 1,
+            "random": false,
+            "anim": {
+            "enable": false,
+            "speed": 1,
+            "opacity_min": 0.6,
+            "sync": false
+            }
+        },
+        "size": {
+            "value": 3,
+            "random": true,
+            "anim": {
+            "enable": false,
+            "speed": 3,
+            "size_min": 0.1,
+            "sync": false
+            }
+        },
+        "line_linked": {
+            "enable": true,
+            "distance": 120,
+            "color": "#ffffff",
+            "opacity": 0.5,
+            "width": 1
+        },
+        "move": {
+            "enable": true,
+            "speed": 8,
+            "direction": "random",
+            "random": false,
+            "straight": false,
+            "out_mode": "out",
+            "bounce": true,
+            "attract": {
+            "enable": true,
+            "rotateX": 3600,
+            "rotateY": 3600
+            }
+        }
+        },
+
+
+
+        "interactivity": {
+        "detect_on": "canvas",
+
+        "events": {
+            "onhover": {
+            "enable": true,
+            "mode": "grab"
+            },
+
+            "onclick": {
+            "enable": true,
+            "mode": "remove"
+            },
+            "resize": true
+        },
+
+        "modes": {
+            "grab": {
+            "distance": 140,
+            "line_linked": {
+                "opacity": 1
+            }
+            },
+            "bubble": {
+            "distance": 100,
+            "size": 4,
+            "duration": 2,
+            "opacity": 1,
+            "speed": 3
+            },
+
+            "repulse": {
+            "distance": 200,
+            "duration": 0.5
+            },
+
+            "push": {
+            "particles_nb": 5
+            },
+
+            "remove": {
+            "particles_nb": 2
+            }
+        }
+        },
+        "retina_detect": true
+        });
+    </script>
+</body>
+</html>
