@@ -78,4 +78,27 @@
     .navbar .navbar-toggler {
         height: 32px;
     }
+    .transform-section .transform-box {
+        height: 160px;
+    }
+    .transform-section .transform-box .transform-box-inner {
+        height: 120px;
+        width: 120px;
+    }
+    .transform-section .controls label {
+        font-size: 15px;
+    }
+    .transform-section .controls input {
+        margin-top: 3px;
+    }
+    button {
+        font-size: 14px !important;
+    }
+    .filter-section .controls input {
+        margin-top: 3px;
+    }
+    .filter-section .controls label {
+        font-size: 14px;
+        padding-top: 3px;
+    }
 }

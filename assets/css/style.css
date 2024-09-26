@@ -7,6 +7,7 @@
 }
 :root {
   --theme1:#13a561;
+  --bg-primary:#f1eff9;
 }
 
 body{
@@ -16,6 +17,10 @@ body{
     font-family: "Nunito Sans", sans-serif !important;
     /* background-color: #010120; */
     user-select: none;
+}
+.generate-title {
+  color: #000;
+  font-weight: 700;
 }
 .main-section {
   padding-block: 50px;
@@ -382,3 +387,28 @@ input[type="color"] {
   
 }
 /* box shadow section end */
+
+
+/* transform section start */
+.transform-section .transform-box {
+  height: 190px;
+  background-color: var(--bg-primary);
+}
+.transform-section .transform-box .transform-box-inner {
+  height: 140px;
+  width: 140px;
+  color: #fff;
+}
+/* transform section end */
+
+
+/* filter section start  */
+.filter-section .image-container {
+  background-color: var(--bg-primary);
+  padding-block: 20px;
+}
+.filter-section .image-container img {
+  width: 90%;
+  height: 90%;
+}
+/* filter section end  */

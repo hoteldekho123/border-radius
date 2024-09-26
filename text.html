@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transform Generator</title>
+    <title>CSS Filter Generator</title>
     <link rel="stylesheet" href="style.css">
     <style>
         body {
@@ -11,40 +11,32 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     height: 100vh;
-    background-color: #f0f0f0;
     margin: 0;
+    background-color: #f0f0f0;
 }
 
 .container {
     text-align: center;
+    max-width: 600px;
 }
 
-.box-container {
+.image-container {
     margin-bottom: 20px;
-    height: 200px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
-#box {
-    width: 150px;
-    height: 150px;
-    background-color: #007bff;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.5rem;
-    transition: transform 0.3s ease;
+img {
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+    transition: filter 0.3s ease;
 }
 
 .controls {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin-bottom: 20px;
 }
 
 label {
@@ -79,20 +71,22 @@ label {
 </head>
 <body>
     <div class="container">
-        <h1>CSS Transform Generator</h1>
+        <h1>CSS Filter Generator</h1>
 
-        <div class="box-container">
-            <div id="box">Transform Me!</div>
+        <div class="image-container">
+            <img id="image" src="" alt="Sample Image">
         </div>
 
         <div class="controls">
-            <label>Rotate (deg): <input type="range" id="rotate" min="0" max="360" value="0"></label>
-            <label>Scale X: <input type="range" id="scaleX" min="0.1" max="3" step="0.1" value="1"></label>
-            <label>Scale Y: <input type="range" id="scaleY" min="0.1" max="3" step="0.1" value="1"></label>
-            <label>Skew X (deg): <input type="range" id="skewX" min="0" max="100" value="0"></label>
-            <label>Skew Y (deg): <input type="range" id="skewY" min="0" max="100" value="0"></label>
-            <label>Translate X (px): <input type="range" id="translateX" min="-200" max="200" value="0"></label>
-            <label>Translate Y (px): <input type="range" id="translateY" min="-200" max="200" value="0"></label>
+            <label>Blur (px): <input type="range" id="blur" min="0" max="20" value="0"></label>
+            <label>Brightness (%): <input type="range" id="brightness" min="50" max="200" value="100"></label>
+            <label>Contrast (%): <input type="range" id="contrast" min="50" max="200" value="100"></label>
+            <label>Grayscale (%): <input type="range" id="grayscale" min="0" max="100" value="0"></label>
+            <label>Hue-Rotate (deg): <input type="range" id="hue-rotate" min="0" max="360" value="0"></label>
+            <label>Invert (%): <input type="range" id="invert" min="0" max="100" value="0"></label>
+            <label>Opacity (%): <input type="range" id="opacity" min="0" max="100" value="100"></label>
+            <label>Saturate (%): <input type="range" id="saturate" min="50" max="200" value="100"></label>
+            <label>Sepia (%): <input type="range" id="sepia" min="0" max="100" value="0"></label>
         </div>
 
         <div class="css-code">
@@ -103,62 +97,5 @@ label {
     </div>
 
     <script src="script.js"></script>
-
-    <script>
-        const box = document.getElementById('box');
-const rotate = document.getElementById('rotate');
-const scaleX = document.getElementById('scaleX');
-const scaleY = document.getElementById('scaleY');
-const skewX = document.getElementById('skewX');
-const skewY = document.getElementById('skewY');
-const translateX = document.getElementById('translateX');
-const translateY = document.getElementById('translateY');
-const cssOutput = document.getElementById('css-output');
-const copyButton = document.getElementById('copy-button');
-
-// Update the transform and CSS code
-function updateTransform() {
-    const r = rotate.value;
-    const sX = scaleX.value;
-    const sY = scaleY.value;
-    const skX = skewX.value;
-    const skY = skewY.value;
-    const tX = translateX.value;
-    const tY = translateY.value;
-
-    const transformValue = `rotate(${r}deg) scale(${sX}, ${sY}) skew(${skX}deg, ${skY}deg) translate(${tX}px, ${tY}px)`;
-
-    // Apply the transform to the box
-    box.style.transform = transformValue;
-
-    // Update the generated CSS code
-    cssOutput.textContent = `transform: ${transformValue};`;
-}
-
-// Copy CSS to clipboard
-function copyToClipboard() {
-    navigator.clipboard.writeText(cssOutput.textContent)
-        .then(() => {
-            alert("CSS copied to clipboard!");
-        })
-        .catch(err => {
-            console.error("Error copying text: ", err);
-        });
-}
-
-// Event listeners
-rotate.addEventListener('input', updateTransform);
-scaleX.addEventListener('input', updateTransform);
-scaleY.addEventListener('input', updateTransform);
-skewX.addEventListener('input', updateTransform);
-skewY.addEventListener('input', updateTransform);
-translateX.addEventListener('input', updateTransform);
-translateY.addEventListener('input', updateTransform);
-copyButton.addEventListener('click', copyToClipboard);
-
-// Initialize with default settings
-updateTransform();
-
-    </script>
 </body>
 </html>
