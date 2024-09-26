@@ -262,6 +262,7 @@ canvas.particles-js-canvas-el {
 }
 /* copyright section end */
 
+
 /* navbar css start */
 .navbar  {
   border-bottom: 1px solid #383838;
@@ -280,7 +281,13 @@ canvas.particles-js-canvas-el {
 .navbar .navbar-nav {
   gap: 20px;
 }
-
+.navbar .navbar-toggler {
+  height: 38px;
+}
+.navbar .navbar-toggler img {
+  filter:invert(1);
+}
+/* navbar css end */
 
 
 /* gradient page start  */

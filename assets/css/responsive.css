@@ -1,6 +1,27 @@
+@media (max-width:1200px){
+    .navbar .navbar-nav {
+        gap: 3px;
+    }
+}
+@media (max-width:991px){
+    .nav-offcanvas {
+        max-width: 320px !important;
+        width: 320px !important;
+    }
+    .nav-offcanvas .btn-close {
+        font-size: 14px;
+        filter: invert(1);
+    }
+    .navbar .navbar-nav {
+        gap: 15px;
+    }
+    .navbar .nav-link {
+        font-size: 15px !important;
+    }
+}
 @media (max-width:767px){
     .main-section .main-heading {
-        font-size: 23px;
+        font-size: 21px;
         margin-bottom: 15px;
     }
     .wrapper {
@@ -47,5 +68,14 @@
     }
     .box-shadow-section button {
         font-size: 14px;
+    }
+    .dimensions label {
+        font-size: 15px;
+    }
+    .dimensions input {
+        font-size: 14px;
+    }
+    .navbar .navbar-toggler {
+        height: 32px;
     }
 }
