@@ -16,10 +16,11 @@
 </head>
 <body>
     <!-- animation css  -->
+    
     <div id="particles-js"> </div>
 
-    <!-- navbar start -->
-    <nav class="navbar navbar-expand-lg" aria-label="Light offcanvas navbar">
+      <!-- navbar start -->
+      <nav class="navbar navbar-expand-lg" aria-label="Light offcanvas navbar">
         <div class="container">
           <a class="navbar-brand" href="index.html">
             <img src="assets/img/logo.svg" alt="navbar logo" class="h-100 w-100 img-fluid">
@@ -57,42 +58,36 @@
     <!-- navbar end -->
 
     <!-- main section start -->
-    <section class="main-section position-relative overflow-hidden">
+    <section class="main-section position-relative overflow-hidden gradient-page">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 col-md-10 mx-auto">
+                <div class="col-lg-6 mx-auto">
                     <div class="wrapper">
-                        <h1 class="position-relative main-heading text-center">CSS Border Radius Generator</h1>
-                        <div class="output-blob">
-                            <div id="blob"></div>
-                        </div>
-                        <div class="dimensions">
-                            <div>
-                                <label for="blob-height">
-                                    Height
-                                </label>
-                                <input type="number" value="200" class="blog-size-input" id="blob-height">
+                        <h1 class="position-relative main-heading text-center">CSS Gradient background Generator</h1>
+                        <div class="color-inputs d-flex align-items-center gap-2 justify-content-between">
+                            <div class="d-flex flex-column gap-2 justify-content-center">
+                              <label for="color1" class="fw-semibold"> First Color:</label>
+                              <input type="color" id="color1" class="mx-auto" value="#ff0000">
                             </div>
-                            <div>
-                                <label for="blob-width">
-                                    Width
-                                </label>
-                                <input type="number" value="200" class="blog-size-input" id="blob-width">
+                            <div class="d-flex flex-column gap-2 justify-content-center">
+                              <label for="color2" class="fw-semibold"> Second Color:</label>
+                              <input type="color" class="mx-auto" id="color2" value="#0000ff">
                             </div>
-                        </div>
-                        <div class="sliders">
-                            <input type="range" value="30">
-                            <input type="range" value="80">
-                            <input type="range" value="60">
-                            <input type="range" value="40">
-                        </div>
-                        <p class="fw-bold mt-4 mb-1 pt-md-3 text-center">Generated CSS:</p>
-                        <div class="d-flex align-items-center border rounded-2 overflow-hidden blob-input-main">
-                            <input type="text" id="css-code" class="blob-input px-2 w-100 bg-transparent" readonly>
-                            <button id="copy" class="w-auto px-3 h-100">Copy</button>
+                            <div class="d-flex flex-column gap-2 justify-content-center">
+                              <label for="degree" class="fw-semibold">  Angle :</label>
+                              <input type="number" id="degree" class="mx-auto blog-size-input mt-0" value="90" min="0" max="360">
+                            </div>
+                          </div>
+                      
+                        <div class="color-outfit">
+                            <div class="color-outfit-inner">
+                              <h2>Gradient Preview:</h2>
+                              <div class="gradient-box" id="gradient-box"></div>
+                            </div>
+                            <h2>CSS Code:</h2>
+                            <textarea id="css-code" class="gradient-result-box" readonly></textarea>
                         </div>
                     </div> 
-
                 </div>
             </div>
         </div>
@@ -152,6 +147,7 @@
     <script src="assets/libs/script.js"></script>
     <script src="assets/libs/particles.min.js"></script>
     <script src="assets/libs/bootstrap.bundle.min.js"></script>
+    <script src="assets/libs/gradient.js"></script>
     <script>
 
         particlesJS("particles-js", {

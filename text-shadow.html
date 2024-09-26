@@ -57,39 +57,49 @@
     <!-- navbar end -->
 
     <!-- main section start -->
-    <section class="main-section position-relative overflow-hidden">
+    <section class="main-section position-relative overflow-hidden text-shadow-section">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 col-md-10 mx-auto">
+                <div class="col-lg-6 mx-auto">
                     <div class="wrapper">
-                        <h1 class="position-relative main-heading text-center">CSS Border Radius Generator</h1>
-                        <div class="output-blob">
-                            <div id="blob"></div>
+                        <h1 class="position-relative main-heading text-center">CSS Text Shadow Generator</h1>
+                        <div class="text-container overflow-x-hidden overflow-y-auto">
+                            <p id="text-preview">Preview Text</p>
                         </div>
-                        <div class="dimensions">
-                            <div>
-                                <label for="blob-height">
-                                    Height
+                        <input type="text" class="custom-text-input form-control shadow-none fw-medium" id="custom-text" placeholder="Enter your text" value="Preview Text">
+                
+                        <div class="text-shadow-control row g-3">
+                            <div class="col-md-6">
+                                <label class="d-flex flex-column fw-semibold">
+                                    Horizontal Shadow: 
+                                    <input type="range" id="h-shadow" min="-50" max="50" value="10">
                                 </label>
-                                <input type="number" value="200" class="blog-size-input" id="blob-height">
                             </div>
-                            <div>
-                                <label for="blob-width">
-                                    Width
+                            <div class="col-md-6">
+                                <label class="d-flex flex-column fw-semibold">
+                                    Vertical Shadow: 
+                                    <input type="range" id="v-shadow" min="-50" max="50" value="10">
                                 </label>
-                                <input type="number" value="200" class="blog-size-input" id="blob-width">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="d-flex flex-column fw-semibold">
+                                    Blur Radius:
+                                    <input type="range" id="blur-radius" min="0" max="100" value="5">
+                                </label>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="d-flex flex-column fw-semibold">
+                                    Shadow Color:
+                                    <input type="color" id="shadow-color" value="#000000">
+                                </label>
                             </div>
                         </div>
-                        <div class="sliders">
-                            <input type="range" value="30">
-                            <input type="range" value="80">
-                            <input type="range" value="60">
-                            <input type="range" value="40">
-                        </div>
-                        <p class="fw-bold mt-4 mb-1 pt-md-3 text-center">Generated CSS:</p>
-                        <div class="d-flex align-items-center border rounded-2 overflow-hidden blob-input-main">
-                            <input type="text" id="css-code" class="blob-input px-2 w-100 bg-transparent" readonly>
-                            <button id="copy" class="w-auto px-3 h-100">Copy</button>
+                        <div class="text-css-code mt-md-4 mt-3">
+                            <h3 class="text-card-title text-center">Generated CSS:</h3>
+                           <div class="border d-flex align-items-center rounded-2 overflow-hidden ps-md-3 ps-2 justify-content-between">
+                                <code id="css-output"></code>
+                                <button id="copy-button" class="text-nowrap px-2 w-auto text-shadow-btn">Copy</button>
+                           </div>
                         </div>
                     </div> 
 
@@ -152,6 +162,7 @@
     <script src="assets/libs/script.js"></script>
     <script src="assets/libs/particles.min.js"></script>
     <script src="assets/libs/bootstrap.bundle.min.js"></script>
+    <script src="assets/libs/text-shadow.js"></script>
     <script>
 
         particlesJS("particles-js", {

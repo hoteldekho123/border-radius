@@ -1,0 +1,51 @@
+@media (max-width:767px){
+    .main-section .main-heading {
+        font-size: 23px;
+        margin-bottom: 15px;
+    }
+    .wrapper {
+        padding: 15px;
+    }
+    .output-blob{
+        height: 230px;
+        min-height: 230px;
+        padding: 10px 0;
+    }
+    .main-section {
+        padding-block: 35px;
+    }
+    .copyright-section p {
+        font-size: 15px;
+    }
+    .gradient-box {
+        width: 100%;
+        height: 120px;
+        margin: 15px auto;
+    }
+    .color-outfit h2 {
+        font-size: 16px;
+    }
+    .gradient-result-box {
+        height: 70px;
+        font-size: 15px;
+    }
+    .text-shadow-btn {
+        font-size: 13px !important;
+    }
+    .text-shadow-section .custom-text-input {
+        margin-block: 20px;
+    }
+    .box-shadow-section .controls label {
+        font-size: 15px;
+    }
+    .box-shadow-section .box-shadow-box-main {
+        height: 200px;
+    }
+    .box-shadow-section .box-shadow-box-main .box-shadow-box {
+        height: 130px;
+        width: 130px;
+    }
+    .box-shadow-section button {
+        font-size: 14px;
+    }
+}
