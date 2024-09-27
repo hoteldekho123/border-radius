@@ -10,6 +10,7 @@ const saturate = document.getElementById('saturate');
 const sepia = document.getElementById('sepia');
 const cssOutput = document.getElementById('css-output');
 const copyButton = document.getElementById('copy-button');
+const uploadImage = document.getElementById('upload-image');
 
 // Default filter values
 const defaultFilters = {
@@ -28,7 +29,6 @@ const defaultFilters = {
 function updateFilters() {
     let filterValues = '';
 
-    // Check each filter, and only include it if it differs from the default
     if (blur.value !== '0') filterValues += `blur(${blur.value}px) `;
     if (brightness.value !== '100') filterValues += `brightness(${brightness.value}%) `;
     if (contrast.value !== '100') filterValues += `contrast(${contrast.value}%) `;
@@ -39,13 +39,8 @@ function updateFilters() {
     if (saturate.value !== '100') filterValues += `saturate(${saturate.value}%) `;
     if (sepia.value !== '0') filterValues += `sepia(${sepia.value}%) `;
 
-    // Trim extra spaces
     filterValues = filterValues.trim();
-
-    // Apply filters to the image
-    image.style.filter = filterValues || 'none'; // If no filter is applied, use 'none'
-
-    // Update the generated CSS code
+    image.style.filter = filterValues || 'none';
     cssOutput.textContent = filterValues ? `filter: ${filterValues};` : 'filter: none;';
 }
 
@@ -71,6 +66,18 @@ opacity.addEventListener('input', updateFilters);
 saturate.addEventListener('input', updateFilters);
 sepia.addEventListener('input', updateFilters);
 copyButton.addEventListener('click', copyToClipboard);
+
+// Image upload functionality
+uploadImage.addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            image.src = event.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+});
 
 // Initialize with default settings
 updateFilters();
