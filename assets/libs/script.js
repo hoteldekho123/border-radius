@@ -1,3 +1,14 @@
+// navbar class add 
+window.addEventListener('scroll', function() {
+    var navbar = document.getElementById('navbar');
+    if (window.scrollY > 120) {
+      navbar.classList.add('sticky');
+    } else {
+      navbar.classList.remove('sticky');
+    }
+});
+
+
 let outputCode = document.getElementById("css-code");
 
 let sliders = document.querySelectorAll("input[type='range']");
@@ -33,3 +44,4 @@ document.getElementById("copy").addEventListener("click", function(){
 });
 
 createBlob();
+

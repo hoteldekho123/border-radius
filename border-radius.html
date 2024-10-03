@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blob Maker</title>
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <!-- bootstrap css  -->
+    <link rel="stylesheet" href="assets/libs/bootstrap.min.css">
+
+</head>
+<body>
+    <!-- animation css  -->
+    <div id="particles-js"> </div>
+
+    <!-- navbar start -->
+    <nav class="navbar navbar-expand-lg" aria-label="Light offcanvas navbar">
+        <div class="container-fluid px-4">
+          <a class="navbar-brand" href="index.html">
+            <img src="assets/img/logo.svg" alt="navbar logo" class="h-100 w-100 img-fluid">
+          </a>
+          <button class="navbar-toggler shadow-none p-0 border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbarLight" aria-controls="offcanvasNavbarLight" aria-label="Toggle navigation">
+                <img src="assets/img/menu.svg" alt="menu icon" class="h-100 w-100 img-fluid">
+          </button>
+          <div class="offcanvas offcanvas-start nav-offcanvas bg-black" tabindex="-1" id="offcanvasNavbarLight" aria-labelledby="offcanvasNavbarLightLabel">
+            <div class="offcanvas-header border-bottom">
+              <div class="offcanvas-title" id="offcanvasNavbarLightLabel">
+                <img src="assets/img/logo.svg" alt="logo" class="h-100 w-100 img-fluid">
+              </div>
+              <button type="button" class="btn-close shadow-none btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+              <ul class="navbar-nav justify-content-center align-items-lg-center flex-grow-1">
+                <li class="nav-item">
+                  <a class="nav-link" href="border-radius.html">
+                    CSS Border Radius
+                  </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="filter.html">CSS filter</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="gradient.html">CSS Gradient Background</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="text-shadow.html">CSS Text Shadow</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="box-shadow.html">CSS Box Shadow</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="transform.html">CSS Transform</a>
+                </li>
+              </ul>
+              
+            </div>
+          </div>
+        </div>
+    </nav>
+    <!-- navbar end -->
+
+    <!-- main section start -->
+    <section class="main-section position-relative overflow-hidden">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-10 mx-auto">
+                    <div class="wrapper">
+                        <h1 class="position-relative main-heading text-center">CSS Border Radius Generator</h1>
+                        <div class="output-blob">
+                            <div id="blob"></div>
+                        </div>
+                        <div class="dimensions">
+                            <div>
+                                <label for="blob-height" class="fw-semibold">
+                                    Height
+                                </label>
+                                <input type="number" value="200" class="blog-size-input fw-semibold" id="blob-height">
+                            </div>
+                            <div>
+                                <label for="blob-width" class="fw-semibold">
+                                    Width
+                                </label>
+                                <input type="number" value="200" class="blog-size-input fw-semibold" id="blob-width">
+                            </div>
+                        </div>
+                        <div class="sliders">
+                            <input type="range" value="30">
+                            <input type="range" value="80">
+                            <input type="range" value="60">
+                            <input type="range" value="40">
+                        </div>
+                        <p class="fw-bold mt-4 mb-1 pt-md-3 text-center">Generated CSS:</p>
+                        <div class="d-flex align-items-center border rounded-2 overflow-hidden blob-input-main">
+                            <input type="text" id="css-code" class="blob-input px-2 w-100 bg-transparent" readonly>
+                            <button id="copy" class="w-auto px-3 h-100">Copy</button>
+                        </div>
+                    </div> 
+
+                </div>
+            </div>
+        </div>
+        <div class="glowing">
+    
+            <span style="--i:1;"></span>
+            
+            <span style="--i:2;"></span>
+            
+            <span style="--i:3;"></span>
+            
+        </div>
+        <div class="glowing">
+        
+        <span style="--i:1;"></span>
+        
+        <span style="--i:2;"></span>
+        
+        <span style="--i:3;"></span>
+        
+        </div>
+        <div class="glowing">
+        
+        <span style="--i:1;"></span>
+        
+        <span style="--i:2;"></span>
+        
+        <span style="--i:3;"></span>
+        
+        </div>
+        <div class="glowing">
+        
+        <span style="--i:1;"></span>
+        
+        <span style="--i:2;"></span>
+        
+        <span style="--i:3;"></span>
+        
+        </div>
+    </section>
+    <!-- main section end -->
+
+    <!-- copyright section start -->
+    <section class="copyright-section position-relative ">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <p class="text-center">Made with 💜 by Creative css Generate</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- copyright section end -->
+
+
+    <!--Script-->
+    <script src="assets/libs/script.js"></script>
+    <script src="assets/libs/particles.min.js"></script>
+    <script src="assets/libs/bootstrap.bundle.min.js"></script>
+    <script>
+
+        particlesJS("particles-js", {
+
+        "particles": {
+        "number": {
+            "value": 250,
+            "density": {
+            "enable": true,
+            "value_area": 1500
+            }
+        },
+        "color": {
+            "value": "#fff"
+        },
+        "shape": {
+            "type": "circle",
+            "stroke": {
+            "width": 0,
+            "color": "#000000"
+            },
+            "polygon": {
+            "nb_sides": 5
+            },
+            "image": {
+            "src": "http://image.ibb.co/g9eFcF/logo_transparent.png",
+            "width": 100,
+            "height": 100
+            }
+        },
+        "opacity": {
+            "value": 1,
+            "random": false,
+            "anim": {
+            "enable": false,
+            "speed": 1,
+            "opacity_min": 0.6,
+            "sync": false
+            }
+        },
+        "size": {
+            "value": 3,
+            "random": true,
+            "anim": {
+            "enable": false,
+            "speed": 3,
+            "size_min": 0.1,
+            "sync": false
+            }
+        },
+        "line_linked": {
+            "enable": true,
+            "distance": 120,
+            "color": "#ffffff",
+            "opacity": 0.5,
+            "width": 1
+        },
+        "move": {
+            "enable": true,
+            "speed": 8,
+            "direction": "random",
+            "random": false,
+            "straight": false,
+            "out_mode": "out",
+            "bounce": true,
+            "attract": {
+            "enable": true,
+            "rotateX": 3600,
+            "rotateY": 3600
+            }
+        }
+        },
+
+
+
+        "interactivity": {
+        "detect_on": "canvas",
+
+        "events": {
+            "onhover": {
+            "enable": true,
+            "mode": "grab"
+            },
+
+            "onclick": {
+            "enable": true,
+            "mode": "remove"
+            },
+            "resize": true
+        },
+
+        "modes": {
+            "grab": {
+            "distance": 140,
+            "line_linked": {
+                "opacity": 1
+            }
+            },
+            "bubble": {
+            "distance": 100,
+            "size": 4,
+            "duration": 2,
+            "opacity": 1,
+            "speed": 3
+            },
+
+            "repulse": {
+            "distance": 200,
+            "duration": 0.5
+            },
+
+            "push": {
+            "particles_nb": 5
+            },
+
+            "remove": {
+            "particles_nb": 2
+            }
+        }
+        },
+        "retina_detect": true
+        });
+    </script>
+</body>
+</html>

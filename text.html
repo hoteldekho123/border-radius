@@ -3,99 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSS Filter Generator</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Image Converter</title>
+    <link rel="stylesheet" href="styles.css">
     <style>
         body {
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
     height: 100vh;
-    margin: 0;
-    background-color: #f0f0f0;
+    background-color: #f4f4f4;
 }
 
 .container {
     text-align: center;
-    max-width: 600px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.image-container {
-    margin-bottom: 20px;
+input[type="file"] {
+    margin: 10px 0;
 }
 
-img {
-    width: 400px;
-    height: 400px;
-    object-fit: cover;
-    transition: filter 0.3s ease;
-}
-
-.controls {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-label {
-    font-size: 1.2rem;
-}
-
-.css-code {
-    margin-top: 20px;
-    font-size: 1.2rem;
-    background-color: #e0e0e0;
-    padding: 10px;
-    border-radius: 5px;
-}
-
-#copy-button {
-    margin-top: 10px;
-    padding: 10px 15px;
-    font-size: 1rem;
-    cursor: pointer;
-    border: none;
-    background-color: #007bff;
-    color: white;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
-
-#copy-button:hover {
-    background-color: #0056b3;
+select {
+    margin: 10px 0;
 }
 
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>CSS Filter Generator</h1>
-
-        <div class="image-container">
-            <img id="image" src="" alt="Sample Image">
-        </div>
-
-        <div class="controls">
-            <label>Blur (px): <input type="range" id="blur" min="0" max="20" value="0"></label>
-            <label>Brightness (%): <input type="range" id="brightness" min="50" max="200" value="100"></label>
-            <label>Contrast (%): <input type="range" id="contrast" min="50" max="200" value="100"></label>
-            <label>Grayscale (%): <input type="range" id="grayscale" min="0" max="100" value="0"></label>
-            <label>Hue-Rotate (deg): <input type="range" id="hue-rotate" min="0" max="360" value="0"></label>
-            <label>Invert (%): <input type="range" id="invert" min="0" max="100" value="0"></label>
-            <label>Opacity (%): <input type="range" id="opacity" min="0" max="100" value="100"></label>
-            <label>Saturate (%): <input type="range" id="saturate" min="50" max="200" value="100"></label>
-            <label>Sepia (%): <input type="range" id="sepia" min="0" max="100" value="0"></label>
-        </div>
-
-        <div class="css-code">
-            <h3>Generated CSS:</h3>
-            <code id="css-output"></code>
-            <button id="copy-button">Copy CSS</button>
-        </div>
+        <h1>Image Converter</h1>
+        <input type="file" id="file-input" accept="image/*">
+        <select id="format-select">
+            <option value="image/jpeg">JPEG</option>
+            <option value="image/png">PNG</option>
+            <option value="image/gif">GIF</option>
+            <option value="image/bmp">BMP</option>
+        </select>
+        <button id="convert-button">Convert</button>
+        <canvas id="canvas" style="display:none;"></canvas>
+        <img id="converted-image" alt="Converted Image" />
     </div>
 
     <script src="script.js"></script>
+    <script>
+        document.getElementById('convert-button').addEventListener('click', function () {
+    const fileInput = document.getElementById('file-input');
+    const formatSelect = document.getElementById('format-select');
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    const convertedImage = document.getElementById('converted-image');
+
+    if (fileInput.files.length === 0) {
+        alert('Please select an image file.');
+        return;
+    }
+
+    const file = fileInput.files[0];
+    const reader = new FileReader();
+
+    reader.onload = function (event) {
+        const img = new Image();
+        img.onload = function () {
+            // Set canvas dimensions
+            canvas.width = img.width;
+            canvas.height = img.height;
+
+            // Draw image on canvas
+            ctx.drawImage(img, 0, 0);
+
+            // Get the selected format
+            const format = formatSelect.value;
+
+            // Convert the image to the selected format and display it
+            const dataURL = canvas.toDataURL(format);
+            convertedImage.src = dataURL;
+            convertedImage.style.display = 'block';
+        };
+        img.src = event.target.result;
+    };
+
+    reader.readAsDataURL(file);
+});
+
+    </script>
 </body>
 </html>
