@@ -3,92 +3,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Converter</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Background Remover</title>
     <style>
         body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f4f4f4;
-}
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
 
-.container {
-    text-align: center;
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+        .container {
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
 
-input[type="file"] {
-    margin: 10px 0;
-}
+        .upload-section {
+            margin-bottom: 20px;
+        }
 
-select {
-    margin: 10px 0;
-}
+        button {
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+            display: none; /* Initially hidden */
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        .image-preview {
+            position: relative;
+            width: 100%;
+            max-width: 300px;
+            margin: 20px auto;
+            display: none; /* Initially hidden */
+            border: 2px dashed #ccc; /* Dashed border */
+            background: transparent; /* Transparent background */
+            padding: 10px; /* Add padding */
+        }
+
+        .image-preview img {
+            width: 100%;
+            height: auto;
+            display: block; /* Ensure it is a block element */
+        }
+
+        /* Loader Styles */
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 4px solid #3498db;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            position: absolute; /* Position loader over image */
+            top: 50%; /* Center vertically */
+            left: 50%; /* Center horizontally */
+            transform: translate(-50%, -50%); /* Center it exactly */
+            display: none; /* Hidden initially */
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Transparent background pattern */
+        .transparent-bg {
+            background: repeating-linear-gradient(
+                45deg,
+                #ccc 0,
+                #ccc 25%,
+                #fff 25%,
+                #fff 50%
+            );
+            background-size: 10px 10px;
+        }
+
+        /* Input Styles */
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px; /* Space between label and input */
+        }
+
+        .input-label {
+            font-weight: bold;
+            margin-bottom: 5px; /* Space between label and input */
+            display: block; /* Display block for label */
+        }
 
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Image Converter</h1>
-        <input type="file" id="file-input" accept="image/*">
-        <select id="format-select">
-            <option value="image/jpeg">JPEG</option>
-            <option value="image/png">PNG</option>
-            <option value="image/gif">GIF</option>
-            <option value="image/bmp">BMP</option>
-        </select>
-        <button id="convert-button">Convert</button>
-        <canvas id="canvas" style="display:none;"></canvas>
-        <img id="converted-image" alt="Converted Image" />
+        <h1>Image Background Remover</h1>
+        <div class="upload-section">
+            <label class="input-label" for="imageUpload">Upload Image:</label>
+            <input type="file" id="imageUpload" accept="image/*" />
+        </div>
+        <div class="image-preview transparent-bg" id="imageContainer">
+            <img id="uploadedImage" src="" alt="Upload Preview" />
+            <div id="loader" class="loader"></div> <!-- Loader placed here -->
+        </div>
+        <button id="downloadBtn">Download Image</button> <!-- Download button -->
     </div>
 
-    <script src="script.js"></script>
     <script>
-        document.getElementById('convert-button').addEventListener('click', function () {
-    const fileInput = document.getElementById('file-input');
-    const formatSelect = document.getElementById('format-select');
-    const canvas = document.getElementById('canvas');
-    const ctx = canvas.getContext('2d');
-    const convertedImage = document.getElementById('converted-image');
+        const imageUpload = document.getElementById('imageUpload');
+        const uploadedImage = document.getElementById('uploadedImage');
+        const loader = document.getElementById('loader');
+        const imageContainer = document.getElementById('imageContainer');
+        const downloadBtn = document.getElementById('downloadBtn');
 
-    if (fileInput.files.length === 0) {
-        alert('Please select an image file.');
-        return;
-    }
+        // Show image preview and remove background immediately after uploading
+        imageUpload.addEventListener('change', function() {
+            const file = imageUpload.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    // Show image container and set the uploaded image
+                    imageContainer.style.display = 'block';
+                    uploadedImage.src = event.target.result;
+                    
+                    // Show loader while processing
+                    loader.style.display = 'block';
+                    uploadedImage.style.display = 'none'; // Hide original image
 
-    const file = fileInput.files[0];
-    const reader = new FileReader();
+                    const formData = new FormData();
+                    formData.append('image_file', file);
 
-    reader.onload = function (event) {
-        const img = new Image();
-        img.onload = function () {
-            // Set canvas dimensions
-            canvas.width = img.width;
-            canvas.height = img.height;
+                    // Example using Remove.bg API (replace 'YOUR_API_KEY' with your actual API key)
+                    fetch('https://api.remove.bg/v1.0/removebg', {
+                        method: 'POST',
+                        headers: {
+                            'X-Api-Key': 'F6wLRPuSzAcDJVwjuMWxvSLq', // Replace with your own API key
+                        },
+                        body: formData
+                    })
+                    .then(response => {
+                        if (!response.ok) throw new Error('Network response was not ok');
+                        return response.blob();
+                    })
+                    .then(blob => {
+                        // Hide the loader
+                        loader.style.display = 'none';
 
-            // Draw image on canvas
-            ctx.drawImage(img, 0, 0);
+                        // Show the processed image
+                        const imgURL = URL.createObjectURL(blob);
+                        uploadedImage.src = imgURL;
+                        uploadedImage.style.display = 'block'; // Show new image
+                        imageContainer.classList.add('transparent-bg'); // Add transparent background pattern
+                        downloadBtn.style.display = 'block'; // Show download button
+                    })
+                    .catch(err => {
+                        loader.style.display = 'none'; // Hide the loader in case of error
+                        alert('Error processing the image. Please try again.');
+                        console.error(err);
+                    });
+                };
+                reader.readAsDataURL(file);
+            }
+        });
 
-            // Get the selected format
-            const format = formatSelect.value;
-
-            // Convert the image to the selected format and display it
-            const dataURL = canvas.toDataURL(format);
-            convertedImage.src = dataURL;
-            convertedImage.style.display = 'block';
-        };
-        img.src = event.target.result;
-    };
-
-    reader.readAsDataURL(file);
-});
-
+        // Download the processed image
+        downloadBtn.addEventListener('click', function() {
+            const imageSrc = uploadedImage.src;
+            const link = document.createElement('a');
+            link.href = imageSrc;
+            link.download = 'processed_image.png'; // Name of the downloaded file
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
     </script>
 </body>
 </html>
