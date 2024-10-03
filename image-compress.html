@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="assets/libs/bootstrap.min.css">
     <!-- font awesome  -->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
     <!-- animation css  -->
@@ -88,12 +89,40 @@
     <!-- navbar end -->
 
     <!-- main section start -->
-    <section class="main-section position-relative overflow-hidden filter-section">
+    <section class="main-section position-relative flex-fill overflow-hidden bg-remove-section">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 mx-auto">
+                <div class="col-lg-7 mx-auto">
                     <div class="wrapper">
-                        <h1 class="position-relative main-heading text-center">Image Compress</h1>
+                        <h1 class="position-relative main-heading text-center">Image Comppersor</h1>
+                        <div class="bg-remove-card d-flex flex-column justify-content-center">
+                            <div class="upload-section text-center">
+                                <label class="input-label d-inline-flex mx-auto align-items-center justify-content-center" for="imageUpload"><i class="ri-chat-upload-line"></i>Upload Image</label>
+                                <input type="file" id="imageUpload" hidden accept="image/*" />
+                                <p class="upload-title mb-0">or drop photos here</p>
+                            </div>
+                            <div class="image-preview transparentbg position-relative" id="imageContainer">
+                                <img id="compressedImage" src="" alt="Upload Preview" />
+                                <div id="loader" class="loader"></div> <!-- Loader placed here -->
+                                <button class="remove-btn position-absolute rounded-circle d-flex align-items-center justify-content-center" id="removeImageBtn">
+                                    <i class="ri-close-line"></i> <!-- Remix Icon Close -->
+                                </button>
+                            </div>
+                            <div class="size-info text-center">
+                                <p id="originalSize" class="fw-medium mb-2"></p>
+                                <p id="compressedSize" class="fw-medium mb-2"></p>
+                            </div>
+                        </div>
+                        <div class="row mt-md-4 mt-3">
+                            <div class="col-lg-6 mx-auto">
+                                <div class="d-flex">
+                                    <a id="downloadBtn" class="download-btn w-100 align-items-center justify-content-center fw-semibold">
+                                        Download Image
+                                        <i class="ri-download-cloud-line"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div> 
                 </div>
             </div>
@@ -157,7 +186,7 @@
     <script src="assets/libs/script.js"></script>
     <script src="assets/libs/particles.min.js"></script>
     <script src="assets/libs/bootstrap.bundle.min.js"></script>
-    <script src="assets/libs/filter.js"></script>
+    <script src="assets/libs/image-compress.js"></script>
     <script>
 
         particlesJS("particles-js", {

@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Background Remover</title>
+    <title>Image Compression Tool</title>
+    
+    <!-- Remix Icon CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+    
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -24,8 +28,12 @@
             width: 100%;
         }
 
-        .upload-section {
-            margin-bottom: 20px;
+        input[type="file"] {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: calc(100% - 22px);
         }
 
         button {
@@ -38,40 +46,38 @@
             display: none; /* Initially hidden */
         }
 
-        button:hover {
-            background-color: #2980b9;
-        }
-
         .image-preview {
             position: relative;
-            width: 100%;
-            max-width: 300px;
-            margin: 20px auto;
-            display: none; /* Initially hidden */
-            border: 2px dashed #ccc; /* Dashed border */
-            background: transparent; /* Transparent background */
-            padding: 10px; /* Add padding */
+            margin-top: 20px;
+            display: none;
         }
 
         .image-preview img {
-            width: 100%;
+            max-width: 100%;
             height: auto;
-            display: block; /* Ensure it is a block element */
         }
 
-        /* Loader Styles */
+        .download-btn {
+            display: none; /* Initially hidden */
+            margin-top: 20px;
+        }
+
+        .size-info {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        /* Loader styles */
         .loader {
-            border: 4px solid #f3f3f3;
+            border: 6px solid #f3f3f3; /* Light grey */
+            border-top: 6px solid #3498db; /* Blue */
             border-radius: 50%;
-            border-top: 4px solid #3498db;
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             animation: spin 1s linear infinite;
-            position: absolute; /* Position loader over image */
-            top: 50%; /* Center vertically */
-            left: 50%; /* Center horizontally */
-            transform: translate(-50%, -50%); /* Center it exactly */
-            display: none; /* Hidden initially */
+            display: none; /* Initially hidden */
+            margin: 20px auto;
         }
 
         @keyframes spin {
@@ -79,116 +85,117 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* Transparent background pattern */
-        .transparent-bg {
-            background: repeating-linear-gradient(
-                45deg,
-                #ccc 0,
-                #ccc 25%,
-                #fff 25%,
-                #fff 50%
-            );
-            background-size: 10px 10px;
+        /* Remove button styles */
+        .remove-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff4d4f;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        /* Input Styles */
-        input[type="file"] {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-            margin-bottom: 10px; /* Space between label and input */
+        .remove-btn:hover {
+            background: #ff6666;
         }
-
-        .input-label {
-            font-weight: bold;
-            margin-bottom: 5px; /* Space between label and input */
-            display: block; /* Display block for label */
-        }
-
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Image Background Remover</h1>
-        <div class="upload-section">
-            <label class="input-label" for="imageUpload">Upload Image:</label>
-            <input type="file" id="imageUpload" accept="image/*" />
+        <h1>Image Compression Tool</h1>
+        <input type="file" id="imageUpload" accept="image/*" />
+        
+        <div class="loader" id="loader"></div> <!-- Loader -->
+        
+        <div class="image-preview" id="imageContainer">
+            <h3>Compressed Image:</h3>
+            <img id="compressedImage" src="" alt="Compressed Image" />
+            <button class="remove-btn" id="removeImageBtn">
+                <i class="ri-close-line"></i> <!-- Remix Icon Close -->
+            </button>
+            <div class="size-info">
+                <p id="originalSize"></p>
+                <p id="compressedSize"></p>
+            </div>
         </div>
-        <div class="image-preview transparent-bg" id="imageContainer">
-            <img id="uploadedImage" src="" alt="Upload Preview" />
-            <div id="loader" class="loader"></div> <!-- Loader placed here -->
-        </div>
-        <button id="downloadBtn">Download Image</button> <!-- Download button -->
+        <a id="downloadBtn" class="download-btn">Download Compressed Image</a>
     </div>
 
     <script>
         const imageUpload = document.getElementById('imageUpload');
-        const uploadedImage = document.getElementById('uploadedImage');
-        const loader = document.getElementById('loader');
+        const compressedImage = document.getElementById('compressedImage');
         const imageContainer = document.getElementById('imageContainer');
         const downloadBtn = document.getElementById('downloadBtn');
+        const originalSizeText = document.getElementById('originalSize');
+        const compressedSizeText = document.getElementById('compressedSize');
+        const loader = document.getElementById('loader');
+        const removeImageBtn = document.getElementById('removeImageBtn');
 
-        // Show image preview and remove background immediately after uploading
-        imageUpload.addEventListener('change', function() {
+        imageUpload.addEventListener('change', () => {
             const file = imageUpload.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    // Show image container and set the uploaded image
-                    imageContainer.style.display = 'block';
-                    uploadedImage.src = event.target.result;
-                    
-                    // Show loader while processing
-                    loader.style.display = 'block';
-                    uploadedImage.style.display = 'none'; // Hide original image
-
-                    const formData = new FormData();
-                    formData.append('image_file', file);
-
-                    // Example using Remove.bg API (replace 'YOUR_API_KEY' with your actual API key)
-                    fetch('https://api.remove.bg/v1.0/removebg', {
-                        method: 'POST',
-                        headers: {
-                            'X-Api-Key': 'F6wLRPuSzAcDJVwjuMWxvSLq', // Replace with your own API key
-                        },
-                        body: formData
-                    })
-                    .then(response => {
-                        if (!response.ok) throw new Error('Network response was not ok');
-                        return response.blob();
-                    })
-                    .then(blob => {
-                        // Hide the loader
-                        loader.style.display = 'none';
-
-                        // Show the processed image
-                        const imgURL = URL.createObjectURL(blob);
-                        uploadedImage.src = imgURL;
-                        uploadedImage.style.display = 'block'; // Show new image
-                        imageContainer.classList.add('transparent-bg'); // Add transparent background pattern
-                        downloadBtn.style.display = 'block'; // Show download button
-                    })
-                    .catch(err => {
-                        loader.style.display = 'none'; // Hide the loader in case of error
-                        alert('Error processing the image. Please try again.');
-                        console.error(err);
-                    });
-                };
-                reader.readAsDataURL(file);
+            if (!file) {
+                alert('Please upload an image first.');
+                return;
             }
+
+            // Display original size
+            const originalSizeKB = (file.size / 1024).toFixed(2); // in KB
+            originalSizeText.textContent = `Original Size: ${originalSizeKB} KB`;
+
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const img = new Image();
+                img.src = event.target.result;
+
+                img.onload = function() {
+                    loader.style.display = 'block'; // Show loader
+
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    
+                    // Set canvas dimensions
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+
+                    // Draw the image on the canvas
+                    ctx.drawImage(img, 0, 0);
+
+                    // Compress the image (keep quality high)
+                    canvas.toBlob((blob) => {
+                        loader.style.display = 'none'; // Hide loader
+                        const url = URL.createObjectURL(blob);
+                        compressedImage.src = url;
+                        imageContainer.style.display = 'block';
+                        downloadBtn.style.display = 'block';
+
+                        // Display compressed size
+                        const compressedSizeKB = (blob.size / 1024).toFixed(2); // in KB
+                        compressedSizeText.textContent = `Compressed Size: ${compressedSizeKB} KB`;
+
+                        // Set the download link
+                        downloadBtn.href = url; // Update the download link to the compressed image
+                        downloadBtn.download = 'compressed_image.jpg'; // Set the default file name
+                    }, 'image/jpeg', 0.95); // Set to 'image/jpeg' with high quality of 0.95
+                };
+            };
+            reader.readAsDataURL(file);
         });
 
-        // Download the processed image
-        downloadBtn.addEventListener('click', function() {
-            const imageSrc = uploadedImage.src;
-            const link = document.createElement('a');
-            link.href = imageSrc;
-            link.download = 'processed_image.png'; // Name of the downloaded file
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+        // Remove Image Button Event
+        removeImageBtn.addEventListener('click', () => {
+            compressedImage.src = '';
+            imageContainer.style.display = 'none';
+            downloadBtn.style.display = 'none';
+            imageUpload.value = ''; // Reset the input file
+            originalSizeText.textContent = '';
+            compressedSizeText.textContent = '';
         });
     </script>
 </body>
