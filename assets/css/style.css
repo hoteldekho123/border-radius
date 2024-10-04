@@ -8,17 +8,6 @@
 :root {
   --theme1:#3bedb2;
   --bg-primary:#f1eff9;
-  --black: 0, 0, 0;
-  --white: 255, 255, 255;
-  --title-color: 245, 245, 245;
-  --content-color: 156, 157, 159;
-  --theme-color: 59, 237, 178;
-  --dark-title: 13, 18, 31;
-  --Iconsax-Color: #6e7179;
-  --secondary-color: 244, 137, 65;
-  --warning-color: 255, 189, 48;
-  --info-color: 220, 154, 254;
-  --danger-color: 157, 145, 255;
 }
 
 
@@ -38,8 +27,8 @@ body{
 .section-space {
   padding-block: 60px;
 }
-.section-space-m {
-  margin-top: 60px;
+.common-gap {
+  margin-top: 50px;
 }
 .main-heading .heading {
   font-size: 28px;
@@ -538,3 +527,75 @@ input[type="color"] {
   height: 55px;
 }
 /* navbar end */
+
+
+/* services section start */
+.services-section .card {
+  width: 100%;
+  height: 100%;
+  padding: 2em 1.5em;
+  background: linear-gradient(#ffffff 50%, #2c7bfe 50%);
+  background-size: 100% 200%;
+  background-position: 0 2.5%;
+  border-radius: 5px;
+  box-shadow: 0 0 35px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  transition: 0.5s;
+}
+.services-section .card h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1f194c;
+  margin: 1em 0;
+}
+.services-section .card p {
+  color: #575a7b;
+  font-size: 15px;
+  line-height: 1.6;
+  letter-spacing: 0.03em;
+}
+.icon-wrapper {
+  background-color: #2c7bfe;
+  position: relative;
+  margin: auto;
+  font-size: 30px;
+  height: 2.5em;
+  width: 2.5em;
+  color: #ffffff;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  transition: 0.5s;
+}
+.card:hover {
+  background-position: 0 100%;
+}
+.card:hover .icon-wrapper {
+  background-color: #ffffff;
+  color: #2c7bfe;
+}
+.card:hover h3 {
+  color: #ffffff;
+}
+.card:hover p {
+  color: #f0f0f0;
+}
+@media screen and (min-width: 768px) {
+  section {
+    padding: 0 2em;
+  }
+  .column {
+    flex: 0 50%;
+    max-width: 50%;
+  }
+}
+@media screen and (min-width: 992px) {
+  section {
+    padding: 1em 3em;
+  }
+  .column {
+    flex: 0 0 33.33%;
+    max-width: 33.33%;
+  }
+}
+/* services section end */
