@@ -11,6 +11,7 @@ const sepia = document.getElementById('sepia');
 const cssOutput = document.getElementById('css-output');
 const copyButton = document.getElementById('copy-button');
 const uploadImage = document.getElementById('upload-image');
+const downloadButton = document.getElementById('download-button'); // Download button
 
 // Default filter values
 const defaultFilters = {
@@ -55,6 +56,26 @@ function copyToClipboard() {
         });
 }
 
+// Download the edited image
+function downloadImage() {
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+
+    // Set canvas size to match image size
+    canvas.width = image.naturalWidth;
+    canvas.height = image.naturalHeight;
+
+    // Apply current filters to canvas
+    ctx.filter = image.style.filter;
+    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+    // Convert the canvas to a downloadable image
+    const link = document.createElement('a');
+    link.href = canvas.toDataURL();
+    link.download = 'edited-image.png';
+    link.click();
+}
+
 // Event listeners for each filter
 blur.addEventListener('input', updateFilters);
 brightness.addEventListener('input', updateFilters);
@@ -66,6 +87,7 @@ opacity.addEventListener('input', updateFilters);
 saturate.addEventListener('input', updateFilters);
 sepia.addEventListener('input', updateFilters);
 copyButton.addEventListener('click', copyToClipboard);
+downloadButton.addEventListener('click', downloadImage); // Download event listener
 
 // Image upload functionality
 uploadImage.addEventListener('change', function(e) {

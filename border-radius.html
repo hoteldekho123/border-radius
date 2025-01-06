@@ -28,7 +28,7 @@
             <div class="offcanvas nav-offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
                 <div class="offcanvas-header border-bottom">
                     <div class="offcanvas-logo" id="offcanvasNavbar2Label">
-                        <img src="assets/img/logo.png" alt="logo" class="h-full w-full img-fluid">
+                        <img src="assets/img/logo.png" alt="logo" class="h-100 w-100 img-fluid">
                     </div>
                     <button type="button" class="btn-close shadow-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
@@ -59,6 +59,12 @@
                                     <a href="gradient-bg.html" class="drop-link d-flex align-items-center gap-6 fs-15 text-nowrap py-10 px-12 text-decoration-none fw-medium d-block position-relative border-bottom">
                                         <img src="assets/img/gradient-color.svg" alt="gradient-color" class="h-15">
                                         Css Background Gradient
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="gradient-text.html" class="drop-link d-flex align-items-center gap-6 fs-15 text-nowrap py-10 px-12 text-decoration-none fw-medium d-block position-relative border-bottom">
+                                        <img src="assets/img/gradient-color.svg" alt="gradient-color" class="h-15">
+                                        Css Text Gradient
                                     </a>
                                 </li>
                                 <li>
@@ -114,7 +120,16 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link fw-semibold p-0 overflow-hidden position-relative text-nowrap" aria-current="page" href="img-convert.html">Image Convert</a>
+                            <a class="nav-link fw-semibold p-0 overflow-hidden position-relative text-nowrap" href="img-convert.html">Image Convert</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fw-semibold p-0 overflow-hidden position-relative text-nowrap" href="css-minify.html">Css Minify</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fw-semibold p-0 overflow-hidden position-relative text-nowrap" href="css-to-scss.html">Css Convert</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fw-semibold p-0 overflow-hidden position-relative text-nowrap" href="html-formater.html">HTML formatter</a>
                         </li>
                     </ul>
                 </div>
@@ -129,12 +144,12 @@
     <!-- navbar end -->
 
     <!-- page heading section start -->
-    <section class="page-heading-section bg-light border-bottom pb-20">
+    <section class="page-heading-section border-bottom pb-md-20 pb-15">
         <div class="container h-full">
             <div class="row h-full align-items-end text-center">
                 <div class="col-lg-10 mx-auto">
-                    <h1 class="fs-lg-32 fs-md-28 fs-24 fw-semibold">Creative CSS Border Radius Generator</h1>
-                    <p class="mb-0 lh-md-29 lh-27 fs-md-16 fs-15 ">Effortlessly create rounded shapes, from simple circles to complex designs, with just a few clicks. Adjust corner radii to customize any element, and copy the CSS code instantly.</p>
+                    <h1 class="fs-lg-32 fs-md-28 fs-24 fw-bold page-heading">Creative CSS <span>Border Radius Generator</span></h1>
+                    <p class="mb-0 lh-md-29 lh-26 fs-md-16 fs-14 ">Effortlessly create rounded shapes, from simple circles to complex designs, with just a few clicks. Adjust corner radii to customize any element, and copy the CSS code instantly.</p>
                 </div>
             </div>
         </div>
@@ -142,11 +157,11 @@
     <!-- page heading section end -->
 
     <!-- main section start -->
-    <section class="my-60 main-section border-radius-section">
+    <section class="py-md-55 py-40 main-section border-radius-section">
         <div class="container">
-            <div class="row justify-content-between">
+            <div class="row justify-content-between gap-lg-0 gap-15">
                 <div class="col-lg-7">
-                    <div class="main-card border br-8 bg-white p-25">
+                    <div class="main-card border br-8 bg-white p-md-25 p-15 sticky-top top-0 z-0">
                         <div class="output-blob w-full py-20 overflow-hidden position-relative br-7 d-flex justify-content-center">
                             <div id="blob" ></div>
                         </div>
@@ -166,23 +181,29 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
-                    <div class="border main-sidebar br-8 p-15">
-                        <div class="fs-md-18 fw-bold">
-                            Css Border Radius
+                <div class="col-xl-4 col-lg-5">
+                    <div class="border main-sidebar bg-white br-8 overflow-hidden">
+                        <div class="main-sidebar-header px-14 py-8">
+                            <div class="fs-md-18 fs-17 fw-bold text-white">
+                                Css Border Radius
+                            </div>
                         </div>
-                        <div class="sliders mt-20 d-flex flex-column gap-20">
-                            <input type="range" value="30">
-                            <input type="range" value="80">
-                            <input type="range" value="60">
-                            <input type="range" value="40">
+                        <div class="main-sidebar-body p-md-15 p-12">
+                            <div class="sliders mt-md-25 mt-20 d-flex flex-column gap-md-24 gap-18">
+                                <input type="range" class="range-input" value="30">
+                                <input type="range" class="range-input" value="80">
+                                <input type="range" class="range-input" value="60">
+                                <input type="range" class="range-input" value="40">
+                            </div>
                         </div>
-                        <div class="fw-bold mt-20 text-center">Generated CSS:</div>
-                        <div class="d-flex align-items-center border rounded-2 overflow-hidden blob-input-main mt-5 h-45 p-10">
-                            <input type="text" id="css-code" class="blob-input w-full bg-transparent" readonly>
-                        </div>
-                        <div class="d-flex mt-20">
-                            <button id="copy" class="w-auto px-3 sidebar-btn border p-9 br-5 w-full">Copy</button>
+                        <div class="main-sidebar-footer border-top p-12 mt-10">
+                            <div class="fw-bold text-center">Generated CSS:</div>
+                            <div class="d-flex align-items-center border rounded-2 overflow-hidden code-copy-input-main mt-5 p-5">
+                                <code id="css-code" class="blob-input w-full bg-transparent border-0 fs-13" readonly></code>
+                            </div>
+                            <div class="d-flex mt-15">
+                                <button id="copy" class="w-auto px-3 sidebar-btn border p-9 br-5 w-full d-flex align-items-center gap-4 justify-content-center">Copy<i class="ri-file-copy-line"></i></button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -191,9 +212,8 @@
     </section>
     <!-- main section end -->
 
-
     <!-- why choose us section start -->
-    <section class="why-choose-section mt-md-45 mt-40 py-md-45 py-35 bg-light border-top border-bottom">
+    <section class="why-choose-section py-md-45 py-35 bg-light border-top border-bottom">
         <div class="container">
             <div class="row">
                 <div class="col-lg-9 mx-auto">
@@ -401,7 +421,7 @@
     <!-- script links  -->
     <script src="assets/js/script.js"></script>
     <script src="assets/libs/bootstrap/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/bord"></script>
+    <script src="assets/js/border-radius.js"></script>
 
     <!-- quiry modal  -->
     <div class="modal fade query-modal" id="suggestion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -463,38 +483,44 @@
                     <div id="csstools" class="accordion-collapse collapse" data-bs-parent="#navbarmenu">
                         <ul class="drop-menu list-unstyled br-10 bg-white overflow-hidden rounded-1 overflow-y-auto">
                             <li>
-                                <a href="border-radius.html" class="drop-link d-flex align-items-center gap-6 fs-14 text-nowrap py-9 px-4 text-decoration-none fw-medium d-block position-relative">
-                                    <img src="assets/img/border-radius.svg" alt="border-radius" class="h-12">
+                                <a href="border-radius.html" class="drop-link d-flex align-items-center gap-6 fs-15 text-nowrap py-10 px-12 text-decoration-none fw-medium d-block position-relative border-bottom">
+                                    <img src="assets/img/border-radius.svg" alt="border-radius" class="h-15">
                                     Css Border Radius
                                 </a>
                             </li>
                             <li>
-                                <a href="filter.html" class="drop-link d-flex align-items-center gap-6 fs-14 text-nowrap py-9 px-4 text-decoration-none fw-medium d-block position-relative">
-                                    <img src="assets/img/filter.svg" alt="css filter" class="h-12">
+                                <a href="filter.html" class="drop-link d-flex align-items-center gap-6 fs-15 text-nowrap py-10 px-12 text-decoration-none fw-medium d-block position-relative border-bottom">
+                                    <img src="assets/img/filter.svg" alt="css filter" class="h-15">
                                     Css Filter
                                 </a>
                             </li>
                             <li>
-                                <a href="gradient-bg.html" class="drop-link d-flex align-items-center gap-6 fs-14 text-nowrap py-9 px-4 text-decoration-none fw-medium d-block position-relative">
-                                    <img src="assets/img/gradient-color.svg" alt="gradient-color" class="h-12">
+                                <a href="gradient-bg.html" class="drop-link d-flex align-items-center gap-6 fs-15 text-nowrap py-10 px-12 text-decoration-none fw-medium d-block position-relative border-bottom">
+                                    <img src="assets/img/gradient-color.svg" alt="gradient-color" class="h-15">
                                     Css Background Gradient
                                 </a>
                             </li>
                             <li>
-                                <a href="text-shadow.html" class="drop-link d-flex align-items-center gap-6 fs-14 text-nowrap py-9 px-4 text-decoration-none fw-medium d-block position-relative">
-                                    <img src="assets/img/text-shadow.svg" alt="text shadow" class="h-12">
+                                <a href="gradient-text.html" class="drop-link d-flex align-items-center gap-6 fs-15 text-nowrap py-10 px-12 text-decoration-none fw-medium d-block position-relative border-bottom">
+                                    <img src="assets/img/gradient-color.svg" alt="gradient-color" class="h-15">
+                                    Css Text Gradient
+                                </a>
+                            </li>
+                            <li>
+                                <a href="text-shadow.html" class="drop-link d-flex align-items-center gap-6 fs-15 text-nowrap py-10 px-12 text-decoration-none fw-medium d-block position-relative border-bottom">
+                                    <img src="assets/img/text-shadow.svg" alt="text shadow" class="h-15">
                                     Css Text Shadow
                                 </a>
                             </li>
                             <li>
-                                <a href="box-shadow.html" class="drop-link d-flex align-items-center gap-6 fs-14 text-nowrap py-9 px-4 text-decoration-none fw-medium d-block position-relative">
-                                    <img src="assets/img/box-shadow.svg" alt="box shadow" class="h-12">
+                                <a href="box-shadow.html" class="drop-link d-flex align-items-center gap-6 fs-15 text-nowrap py-10 px-12 text-decoration-none fw-medium d-block position-relative border-bottom">
+                                    <img src="assets/img/box-shadow.svg" alt="box shadow" class="h-15">
                                     Css Box Shadow
                                 </a>
                             </li>
                             <li>
-                                <a href="transform.html" class="drop-link d-flex align-items-center gap-6 fs-14 text-nowrap py-9 px-4 text-decoration-none fw-medium d-block position-relative">
-                                    <img src="assets/img/transform.svg" alt=" Css Transform" class="h-12">
+                                <a href="transform.html" class="drop-link d-flex align-items-center gap-6 fs-15 text-nowrap py-10 px-12 text-decoration-none fw-medium d-block position-relative border-bottom">
+                                    <img src="assets/img/transform.svg" alt=" Css Transform" class="h-15">
                                     Css Transform
                                 </a>
                             </li>
@@ -509,26 +535,26 @@
                     <div id="imgtools" class="accordion-collapse collapse" data-bs-parent="#navbarmenu">
                         <ul class="drop-menu list-unstyled br-10 bg-white overflow-hidden rounded-1 overflow-y-auto">
                             <li>
-                                <a href="bg-remove.html" class="drop-link d-flex align-items-center gap-6 fs-14 text-nowrap py-9 px-4 text-decoration-none fw-medium d-block position-relative">
-                                    <img src="assets/img/bg-remove.svg" alt="Image Bg Remove" class="h-12">
+                                <a href="bg-remove.html" class="drop-link d-flex align-items-center gap-6 fs-15 text-nowrap py-10 px-12 text-decoration-none fw-medium d-block position-relative border-bottom">
+                                    <img src="assets/img/bg-remove.svg" alt="Image Bg Remove" class="h-15">
                                     Image Bg Remove
                                 </a>
                             </li>
                             <li>
-                                <a href="img-compress.html" class="drop-link d-flex align-items-center gap-6 fs-14 text-nowrap py-9 px-4 text-decoration-none fw-medium d-block position-relative">
-                                    <img src="assets/img/image-compress.svg" alt="compress image" class="h-12">
+                                <a href="img-compress.html" class="drop-link d-flex align-items-center gap-6 fs-15 text-nowrap py-10 px-12 text-decoration-none fw-medium d-block position-relative border-bottom">
+                                    <img src="assets/img/image-compress.svg" alt="compress image" class="h-15">
                                     Image Compress
                                 </a>
                             </li>
                             <li>
-                                <a href="img-resize.html" class="drop-link d-flex align-items-center gap-6 fs-14 text-nowrap py-9 px-4 text-decoration-none fw-medium d-block position-relative">
-                                    <img src="assets/img/img-resizer.svg" alt="img resizer" class="h-12">
+                                <a href="img-resize.html" class="drop-link d-flex align-items-center gap-6 fs-15 text-nowrap py-10 px-12 text-decoration-none fw-medium d-block position-relative border-bottom">
+                                    <img src="assets/img/img-resizer.svg" alt="img resizer" class="h-15">
                                     Image Resize
                                 </a>
                             </li>
                             <li>
-                                <a href="img-crop.html" class="drop-link d-flex align-items-center gap-6 fs-14 text-nowrap py-9 px-4 text-decoration-none fw-medium d-block position-relative">
-                                    <img src="assets/img/img-crop.svg" alt="img crop" class="h-12">
+                                <a href="img-crop.html" class="drop-link d-flex align-items-center gap-6 fs-15 text-nowrap py-10 px-12 text-decoration-none fw-medium d-block position-relative border-bottom">
+                                    <img src="assets/img/img-crop.svg" alt="img crop" class="h-15">
                                     Image Crop
                                 </a>
                             </li>
@@ -536,7 +562,16 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fw-semibold p-0 overflow-hidden position-relative text-nowrap" aria-current="page" href="img-convert.html">Image Convert</a>
+                    <a class="nav-link fw-semibold p-0 overflow-hidden position-relative text-nowrap" href="img-convert.html">Image Convert</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-semibold p-0 overflow-hidden position-relative text-nowrap" href="css-minify.html">Css Minify</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-semibold p-0 overflow-hidden position-relative text-nowrap" href="css-to-scss.html">Css Convert</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-semibold p-0 overflow-hidden position-relative text-nowrap" href="html-formater.html">HTML formatter</a>
                 </li>
             </ul>
         </div>

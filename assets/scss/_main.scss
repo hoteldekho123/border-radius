@@ -2,6 +2,30 @@ $theme1:#e6241d;
 $white:#fff;
 $black:#000;
 
+.common-btn {
+    background-color:$theme1 ;
+    transition: all 0.3s ease-in-out;
+    color: $white;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;  
+    &:hover {
+        background-color: darken($theme1, 10);
+    }
+}
+
+// loader 
+.loader {
+    border: 4px solid $theme1;
+    border-radius: 50%;
+    border-top: 4px solid #fff;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    display: none; /* Hidden initially */
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
 
 /* navbar css start */
 .navbar {
@@ -210,14 +234,29 @@ $black:#000;
 // page heading section start
 .page-heading-section {
     height: 230px;
+    background-color: #f5f1fe;
+    & .page-heading {
+        & span {
+            color: $theme1;
+        }
+    }
+}
+@include md {
+    .page-heading-section {
+        height:auto ;
+        padding-top: 50px;
+    }
 }
 // page heading section end
 
-
 // main section css start 
 .main-section {
+    background-color: #f5f1fe;
     & .main-card {
         box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    }
+    & .main-card-inner {
+        background-color: #eef3f8;
     }
     & .main-sidebar {
         box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
@@ -229,9 +268,80 @@ $black:#000;
                 background-color: darken($theme1, 20);
             }
         }
+        & .main-sidebar-header {
+            background-color: $theme1;
+        }
+    }
+    & .range-input { 
+        height: 22px; /* needed for Firefox*/
+        -webkit-appearance :none;
+        -moz-appearance :none;
+        appearance :none;
+        background: none;
+        cursor: pointer;
+        overflow: hidden;
+        border-radius: 6px;
+    }
+    & .range-input:focus-visible,
+    .range-input:hover{
+        --p: 25%;
+    }
+    & .range-input:active,
+    .range-input:focus-visible{
+        --_b: 22px;
+    }
+    & .range-input[type="range" i]::-webkit-slider-thumb{
+        height: 22px;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        box-shadow: 0 0 0 var(--_b,4px) inset red;
+        border-image: linear-gradient(90deg,red 50%,#ababab 0) 0 1/calc(50% - 5px/2) 100vw/0 calc(100vw + 0px);
+        -webkit-appearance: none;
+        appearance: none;
+        transition: .3s;
+    }
+    & input[type="range"]::-moz-range-thumb {
+        height: 22px;
+        width: 22px;
+        background: none;
+        border-radius: 50%;
+        box-shadow: 0 0 0 var(--_b,5px) inset red;
+        border-image: linear-gradient(90deg,red 50%,#ababab 0) 0 1/calc(50% - 4px/2) 100vw/0 calc(100vw + 5px);
+        -moz-appearance: none;
+        appearance: none;
+        transition: .3s;
+    }
+    & .code-copy-input-main {
+        background-color: #f1eff9;
+        min-height: 45px;
+    }
+    & .select-img-label {
+        background-color: $theme1;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+        color: $white;
+        border: 1.4px solid $theme1;
+        cursor: pointer !important;
+        transition: all 0.3s ease-in-out;
+        &:hover {
+            background-color: transparent;
+            color: $theme1;
+        }
+    }
+    & .download-btn {
+        background-color: #333;
+        color: #fff;
+        transition: all 0.3s ease-in-out;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+        border: 1.4px solid #333;
+        &:hover {
+            background-color: transparent;
+            color: #333;
+        }
     }
 }
+// main section css end
 
+// border radius page start
 .border-radius-section {
     & .output-blob{
         background-color: #eef3f8;
@@ -246,13 +356,123 @@ $black:#000;
     & .blog-size-input {
       border: 1px solid #a0a0b0;
     }
-    & .blob-input-main {
-      background-color: #f1eff9;
+}
+// border radius page end
+
+// gradient bg page start
+.gradient-bg-section {
+    & .degree-knob {
+        border: 2px solid $theme1;
     }
-    & .blob-input{
-        font-size: 13px;
-        border: none;
-        border-radius: 3px;
+    & .degree-value {
+        transform: translate(-50%, -50%);
+        color: $theme1;
+    }
+    & .degree-handle {
+        width: 10px;
+        height: 10px;
+        background-color: $theme1;
+        cursor: pointer;
+    }
+    & .gradient-add-colors {
+        border: 1px solid #929292;
+        padding: 12px;
+        border-radius: 7px  ;
+        & .color-input {
+            height: 40px ;
+            width: 40px;
+            border: 0;
+            padding: 0;
+            border-radius: 6px;
+        }
+        & .hex-code {
+            border-radius: 5px;
+            border: 1px solid #929292;
+            padding: 7px;
+            font-weight: 500;
+            color: $black;
+            outline: none;
+            width: 100px;
+            font-size: 15px;
+        }
+        & .remove-btn {
+            font-size:22px;
+            color: lighten($black, 40);
+        }
+    }
+    & .add-color-btn {
+        background-color: #333;
+        color: $white;
     }
 }
-// main section css end
+@include md {
+    .gradient-bg-section {
+        & .gradient-add-colors {
+            padding: 8px;
+            & .color-input {
+                height: 30px ;
+                width: 30px;
+            }
+            & .hex-code {
+                padding: 5px;
+                width: 80px;
+                font-size: 14px;
+            }
+            & .remove-btn {
+                font-size:20px;
+            }
+        }
+    }
+}
+// gradient bg page end
+
+// img convert section start 
+.img-convert-section {
+    & .main-card-inner {
+        min-height: 200px;
+        border: 1px dashed $theme1;
+    }
+    & .main-card-img-preview {
+        width: 70%;
+    }
+    & .remove-btn {
+        right: -15px;
+        top: -20px;
+    }
+}
+// img convert section end
+
+// css minify section start
+.minify-section {
+    & textarea {
+        outline: none;
+    }
+}
+// css minify section end
+
+
+// image compress section start
+@include md {
+    .image-compress-section {
+        & .main-card-inner {
+            min-height: 150px;
+        }
+    }
+}
+// image compress section end
+
+
+// bg remove section start
+.bg-remove-section {
+    & .transparent-bg {
+        background: repeating-linear-gradient(
+            45deg,
+            #ccc 0,
+            #ccc 25%,
+            #fff 25%,
+            #fff 50%
+        );
+        background-size: 10px 10px;
+    }
+}
+// bg remove section end

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Resize Tool</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        #preview {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            display: none;
+        }
+        img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Image Resize Tool</h1>
+    <input type="file" id="imageInput" accept="image/*">
+    <br>
+    <label for="width">Width:</label>
+    <input type="number" id="width" placeholder="Enter width">
+    <label for="height">Height:</label>
+    <input type="number" id="height" placeholder="Enter height">
+    <br>
+    <label>
+        <input type="checkbox" id="maintainAspectRatio"> Maintain Aspect Ratio
+    </label>
+    <br>
+    <button id="resizeButton">Resize Image</button>
+
+    <div id="preview">
+        <h2>Resized Image:</h2>
+        <img id="resizedImage" src="" alt="Resized Image">
+    </div>
+
+    <script>
+        const imageInput = document.getElementById('imageInput');
+        const widthInput = document.getElementById('width');
+        const heightInput = document.getElementById('height');
+        const resizeButton = document.getElementById('resizeButton');
+        const resizedImage = document.getElementById('resizedImage');
+        const preview = document.getElementById('preview');
+        const aspectRatioCheckbox = document.getElementById('maintainAspectRatio');
+
+        let originalImage;
+        let originalWidth, originalHeight;
+
+        imageInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                originalImage = new Image();
+                originalImage.src = e.target.result;
+                originalImage.onload = () => {
+                    originalWidth = originalImage.width;
+                    originalHeight = originalImage.height;
+                };
+            };
+            reader.readAsDataURL(file);
+        });
+
+        widthInput.addEventListener('input', () => {
+            if (aspectRatioCheckbox.checked && originalWidth && originalHeight) {
+                const ratio = originalHeight / originalWidth;
+                heightInput.value = Math.round(parseInt(widthInput.value) * ratio);
+            }
+        });
+
+        heightInput.addEventListener('input', () => {
+            if (aspectRatioCheckbox.checked && originalWidth && originalHeight) {
+                const ratio = originalWidth / originalHeight;
+                widthInput.value = Math.round(parseInt(heightInput.value) * ratio);
+            }
+        });
+
+        resizeButton.addEventListener('click', () => {
+            const width = parseInt(widthInput.value);
+            const height = parseInt(heightInput.value);
+
+            if (!originalImage || isNaN(width) || isNaN(height)) {
+                alert('Please upload an image and enter valid width and height.');
+                return;
+            }
+
+            const canvas = document.createElement('canvas');
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(originalImage, 0, 0, width, height);
+
+            resizedImage.src = canvas.toDataURL();
+            preview.style.display = 'block';
+        });
+    </script>
+
+</body>
+</html>
