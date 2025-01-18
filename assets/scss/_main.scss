@@ -117,6 +117,9 @@ $black:#000;
 
 // content section start
 .content-card {
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    padding: 15px;
+    border-radius: 12px;
     & p {
         font-size: 15px;
         line-height: 26px;
@@ -137,9 +140,25 @@ $black:#000;
         margin-bottom: 12px;
         font-weight: 600;
     }
+    & .show-few-lines {
+        display: -webkit-box;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 4;
+    }
+    & .read-more-btn {
+        background-color: $theme1;
+        color: #fff;
+        font-size: 15px;
+        border-radius: 5px;
+        padding: 9px 20px;
+        line-height: normal;
+    }
 }
 @include md {
     .content-card {
+        padding: 12px;
         & p {
             font-size: 14px;
             line-height: 25px;
